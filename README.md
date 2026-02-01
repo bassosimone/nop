@@ -11,7 +11,16 @@ Basic usage (DNS-over-UDP lookup):
 
 ```Go
 cfg := nop.NewConfig()
-logger := slog.New(slog.NewJSONHandler(os.Stderr, nil)).With("spanID", nop.NewSpanID())
+
+// Use LevelDebug to include per-I/O events (read, write, deadline);
+// use LevelInfo to see only lifecycle and protocol events.
+logger := slog.New(slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{
+	Level: slog.LevelDebug,
+}))
+
+// Attach a span ID (UUIDv7) so all log entries from this operation
+// can be correlated across pipeline stages.
+logger = logger.With("spanID", nop.NewSpanID())
 
 pipeline := nop.Compose5(
 	nop.NewEndpointFunc(netip.MustParseAddrPort("8.8.8.8:53")),

@@ -25,10 +25,20 @@ func Example_dnsOverUDP() {
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	// Create a config and logger with a span ID for correlating log entries
+	// Create the shared configuration for nop operations.
 	cfg := nop.NewConfig()
+
+	// Create a logger that emits JSON to stderr. Use LevelDebug to include
+	// per-I/O events (read, write, deadline); use LevelInfo to see only
+	// lifecycle and protocol events (connect, close, TLS, DNS, HTTP).
+	logger := slog.New(slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{
+		Level: slog.LevelDebug,
+	}))
+
+	// Generate a span ID (UUIDv7) and attach it to the logger so that
+	// all log entries from this operation can be correlated.
 	spanID := nop.NewSpanID()
-	logger := slog.New(slog.NewJSONHandler(os.Stderr, nil)).With("spanID", spanID)
+	logger = logger.With("spanID", spanID)
 
 	// Create pipeline for establishing a DNS-over-UDP connection.
 	// CancelWatchFunc binds context lifecycle to connection lifecycle:
