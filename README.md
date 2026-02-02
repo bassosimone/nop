@@ -18,6 +18,7 @@ import (
 	"time"
 
 	"github.com/bassosimone/nop"
+	"github.com/bassosimone/runtimex"
 )
 
 // Create configuration with default settings. To classify errors
@@ -35,19 +36,31 @@ logger := slog.New(slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{
 // can be correlated across pipeline stages.
 logger = logger.With("spanID", nop.NewSpanID())
 
-pipeline := nop.Compose5(
-	nop.NewEndpointFunc(netip.MustParseAddrPort("8.8.8.8:53")),
+pipeline := nop.Compose4(
+	// Dial a UDP socket to the target endpoint.
 	nop.NewConnectFunc(cfg, "udp", logger),
+
+	// Wrap the connection to log each read, write, and deadline change.
 	nop.NewObserveConnFunc(cfg, logger),
+
+	// Close the connection when the context is cancelled (e.g., ^C).
 	nop.NewCancelWatchFunc(),
+
+	// Wrap the UDP connection as a DNS-over-UDP connection.
 	nop.NewDNSOverUDPConnFunc(cfg, logger),
 )
 
+// The context controls the overall timeout for the pipeline.
 ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 defer cancel()
 
-dnsConn, err := pipeline.Call(ctx, nop.Unit{})
-// ... use dnsConn.Exchange(ctx, query)
+// Pass the target endpoint directly as input to the pipeline.
+conn, err := pipeline.Call(ctx, netip.MustParseAddrPort("8.8.8.8:53"))
+runtimex.Assert(err == nil)
+defer conn.Close()
+
+// Use the connection to perform a DNS exchange.
+resp, err := conn.Exchange(ctx, query)
 ```
 
 See the [package documentation](https://pkg.go.dev/github.com/bassosimone/nop)

@@ -72,6 +72,14 @@
 // The [SLogger] interface accepts any slog-compatible handler, enabling flexible
 // post-processing. Handlers can filter, transform, or route events as needed.
 //
+// All events share a common set of fields: localAddr, remoteAddr, protocol,
+// and t (timestamp). Completion events (*Done) additionally include t0 (start
+// time), err, and errClass. I/O-level events (read, write, deadline changes)
+// are emitted at [slog.LevelDebug]; all other events use [slog.LevelInfo].
+// The structured log format is compatible with the RBMK data format specification
+// (see https://github.com/rbmk-project/rbmk) and may evolve in minor ways as
+// these packages mature.
+//
 // Use [NewSpanID] to generate a unique, time-ordered identifier (UUIDv7) for each
 // operation, then attach it to the logger with [*slog.Logger.With]. All log entries
 // from that operation will share the same spanID, enabling correlation across
