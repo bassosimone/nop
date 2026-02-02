@@ -10,7 +10,20 @@ through `Compose8`).
 Basic usage (DNS-over-UDP lookup):
 
 ```Go
+import (
+	"context"
+	"log/slog"
+	"net/netip"
+	"os"
+	"time"
+
+	"github.com/bassosimone/nop"
+)
+
+// Create configuration with default settings. To classify errors
+// in log events, set cfg.ErrClassifier to your own implementation.
 cfg := nop.NewConfig()
+// cfg.ErrClassifier = nop.ErrClassifierFunc(myClassifyFunc)
 
 // Use LevelDebug to include per-I/O events (read, write, deadline);
 // use LevelInfo to see only lifecycle and protocol events.
