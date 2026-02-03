@@ -1,4 +1,4 @@
-# Composable Network Measurement Primitives
+# Network Observation Pipelines
 
 [![GoDoc](https://pkg.go.dev/badge/github.com/bassosimone/nop)](https://pkg.go.dev/github.com/bassosimone/nop) [![Build Status](https://github.com/bassosimone/nop/actions/workflows/go.yml/badge.svg)](https://github.com/bassosimone/nop/actions) [![codecov](https://codecov.io/gh/bassosimone/nop/branch/main/graph/badge.svg)](https://codecov.io/gh/bassosimone/nop)
 
