@@ -7,11 +7,20 @@ import (
 	"time"
 )
 
-// dnsExchangeLogContext holds common logging state for DNS exchanges.
+// DNSExchangeLogContext holds common logging state for DNS exchanges.
 //
-// This type exists to consolidate the logging boilerplate shared by
-// DNS-over-UDP, DNS-over-TCP, and DNS-over-TLS exchange methods.
-type dnsExchangeLogContext struct {
+// This type consolidates the logging boilerplate shared by the built-in
+// DNS-over-UDP, DNS-over-TCP, DNS-over-TLS, and DNS-over-HTTPS exchange
+// methods ([*DNSOverUDPConn], [*DNSOverTCPConn], [*DNSOverTLSConn],
+// [*DNSOverHTTPSConn]).
+//
+// It is also useful for callers that need to implement custom DNS exchange
+// loops on top of a raw connection obtained via a nop pipeline. For example,
+// a caller collecting duplicate DNS-over-UDP responses for censorship
+// detection can use this type to emit structured logs consistent with the
+// built-in exchange methods while driving [minest.DNSOverUDPTransport]
+// send/receive directly.
+type DNSExchangeLogContext struct {
 	// ErrClassifier classifies errors for structured logging.
 	ErrClassifier ErrClassifier
 
@@ -34,8 +43,8 @@ type dnsExchangeLogContext struct {
 	TimeNow func() time.Time
 }
 
-// logStart logs the start of a DNS exchange.
-func (lc *dnsExchangeLogContext) logStart(t0 time.Time, deadline time.Time) {
+// LogStart logs the start of a DNS exchange.
+func (lc *DNSExchangeLogContext) LogStart(t0 time.Time, deadline time.Time) {
 	lc.Logger.Info(
 		"dnsExchangeStart",
 		slog.Time("deadline", deadline),
@@ -47,8 +56,8 @@ func (lc *dnsExchangeLogContext) logStart(t0 time.Time, deadline time.Time) {
 	)
 }
 
-// logDone logs the completion of a DNS exchange.
-func (lc *dnsExchangeLogContext) logDone(t0 time.Time, deadline time.Time, err error) {
+// LogDone logs the completion of a DNS exchange.
+func (lc *DNSExchangeLogContext) LogDone(t0 time.Time, deadline time.Time, err error) {
 	lc.Logger.Info(
 		"dnsExchangeDone",
 		slog.Time("deadline", deadline),
@@ -63,11 +72,11 @@ func (lc *dnsExchangeLogContext) logDone(t0 time.Time, deadline time.Time, err e
 	)
 }
 
-// makeQueryObserver returns an observer function for raw DNS queries.
+// MakeQueryObserver returns an observer function for raw DNS queries.
 //
 // The rqr pointer is used to capture the raw query for correlation
 // with the response observer.
-func (lc *dnsExchangeLogContext) makeQueryObserver(t0 time.Time, rqr *[]byte) func([]byte) {
+func (lc *DNSExchangeLogContext) MakeQueryObserver(t0 time.Time, rqr *[]byte) func([]byte) {
 	return func(rawQuery []byte) {
 		lc.Logger.Info(
 			"dnsQuery",
@@ -82,11 +91,11 @@ func (lc *dnsExchangeLogContext) makeQueryObserver(t0 time.Time, rqr *[]byte) fu
 	}
 }
 
-// makeResponseObserver returns an observer function for raw DNS responses.
+// MakeResponseObserver returns an observer function for raw DNS responses.
 //
-// The rqr pointer should be the same one passed to makeQueryObserver,
+// The rqr pointer should be the same one passed to [DNSExchangeLogContext.MakeQueryObserver],
 // allowing the response to be correlated with the original query.
-func (lc *dnsExchangeLogContext) makeResponseObserver(t0 time.Time, rqr *[]byte) func([]byte) {
+func (lc *DNSExchangeLogContext) MakeResponseObserver(t0 time.Time, rqr *[]byte) func([]byte) {
 	return func(rawResp []byte) {
 		lc.Logger.Info(
 			"dnsResponse",

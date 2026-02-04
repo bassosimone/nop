@@ -56,7 +56,7 @@ func (c *DNSOverUDPConn) Exchange(ctx context.Context, query *dnscodec.Query) (*
 	t0 := c.TimeNow()
 	deadline, _ := ctx.Deadline()
 	var rqr []byte
-	lc := &dnsExchangeLogContext{
+	lc := &DNSExchangeLogContext{
 		ErrClassifier:  c.ErrClassifier,
 		LocalAddr:      safeconn.LocalAddr(conn),
 		Logger:         c.Logger,
@@ -73,13 +73,13 @@ func (c *DNSOverUDPConn) Exchange(ctx context.Context, query *dnscodec.Query) (*
 	txp := minest.NewDNSOverUDPTransport(dnsUnusedDialer{}, netip.AddrPortFrom(netip.IPv4Unspecified(), 0))
 
 	// 4. Set observers for raw messages
-	txp.ObserveRawQuery = lc.makeQueryObserver(t0, &rqr)
-	txp.ObserveRawResponse = lc.makeResponseObserver(t0, &rqr)
+	txp.ObserveRawQuery = lc.MakeQueryObserver(t0, &rqr)
+	txp.ObserveRawResponse = lc.MakeResponseObserver(t0, &rqr)
 
 	// 5. Execute with logging
-	lc.logStart(t0, deadline)
+	lc.LogStart(t0, deadline)
 	resp, err := txp.ExchangeWithConn(ctx, conn, query)
-	lc.logDone(t0, deadline, err)
+	lc.LogDone(t0, deadline, err)
 
 	return resp, err
 }

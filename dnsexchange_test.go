@@ -12,10 +12,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// newTestLogContext returns a dnsExchangeLogContext wired to a capturing
+// newTestLogContext returns a DNSExchangeLogContext wired to a capturing
 // logger with fixed metadata, suitable for verifying log output.
-func newTestLogContext(logger SLogger) *dnsExchangeLogContext {
-	return &dnsExchangeLogContext{
+func newTestLogContext(logger SLogger) *DNSExchangeLogContext {
+	return &DNSExchangeLogContext{
 		ErrClassifier:  DefaultErrClassifier,
 		LocalAddr:      "127.0.0.1:54321",
 		Logger:         logger,
@@ -33,7 +33,7 @@ func TestDNSExchangeLogContextLogStart(t *testing.T) {
 
 	t0 := time.Now()
 	deadline := t0.Add(5 * time.Second)
-	lc.logStart(t0, deadline)
+	lc.LogStart(t0, deadline)
 
 	require.Len(t, *records, 1)
 	assert.Equal(t, "dnsExchangeStart", (*records)[0].Message)
@@ -46,7 +46,7 @@ func TestDNSExchangeLogContextLogDone(t *testing.T) {
 
 	t0 := time.Now()
 	deadline := t0.Add(5 * time.Second)
-	lc.logDone(t0, deadline, nil)
+	lc.LogDone(t0, deadline, nil)
 
 	require.Len(t, *records, 1)
 	assert.Equal(t, "dnsExchangeDone", (*records)[0].Message)
@@ -60,7 +60,7 @@ func TestDNSExchangeLogContextLogDoneWithError(t *testing.T) {
 	t0 := time.Now()
 	deadline := t0.Add(5 * time.Second)
 	wantErr := errors.New("timeout")
-	lc.logDone(t0, deadline, wantErr)
+	lc.LogDone(t0, deadline, wantErr)
 
 	require.Len(t, *records, 1)
 	assert.Equal(t, "dnsExchangeDone", (*records)[0].Message)
@@ -84,7 +84,7 @@ func TestDNSExchangeLogContextMakeQueryObserver(t *testing.T) {
 
 	var rqr []byte
 	t0 := time.Now()
-	observer := lc.makeQueryObserver(t0, &rqr)
+	observer := lc.MakeQueryObserver(t0, &rqr)
 
 	rawQuery := []byte{0x00, 0x01, 0x02}
 	observer(rawQuery)
@@ -105,7 +105,7 @@ func TestDNSExchangeLogContextMakeResponseObserver(t *testing.T) {
 	rqr := rawQuery
 
 	t0 := time.Now()
-	observer := lc.makeResponseObserver(t0, &rqr)
+	observer := lc.MakeResponseObserver(t0, &rqr)
 
 	rawResp := []byte{0x03, 0x04, 0x05}
 	observer(rawResp)

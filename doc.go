@@ -32,6 +32,9 @@
 //   - [DNSOverTCPConn]: wraps a TCP connection for DNS-over-TCP (owns the connection)
 //   - [DNSOverTLSConn]: wraps a TLS connection for DNS-over-TLS (owns the connection)
 //   - [DNSOverHTTPSConn]: wraps an HTTPConn for DNS-over-HTTPS (owns the connection)
+//   - [DNSExchangeLogContext]: structured logging for DNS exchanges, used internally
+//     by the above types and available for callers implementing custom exchange
+//     loops (e.g., collecting duplicate DNS-over-UDP responses)
 //
 // Composition utilities:
 //   - [Compose2] through [Compose8]: chain Funcs into pipelines

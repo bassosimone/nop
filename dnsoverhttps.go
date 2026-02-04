@@ -58,7 +58,7 @@ func (c *DNSOverHTTPSConn) Exchange(ctx context.Context, query *dnscodec.Query) 
 	t0 := c.TimeNow()
 	deadline, _ := ctx.Deadline()
 	var rqr []byte
-	lc := &dnsExchangeLogContext{
+	lc := &DNSExchangeLogContext{
 		ErrClassifier:  c.ErrClassifier,
 		LocalAddr:      safeconn.LocalAddr(conn),
 		Logger:         c.Logger,
@@ -69,23 +69,23 @@ func (c *DNSOverHTTPSConn) Exchange(ctx context.Context, query *dnscodec.Query) 
 	}
 
 	// 3. Create the HTTP request and the query message
-	lc.logStart(t0, deadline)
-	httpReq, queryMsg, err := dnsoverhttps.NewRequestWithHook(ctx, query, c.url, lc.makeQueryObserver(t0, &rqr))
+	lc.LogStart(t0, deadline)
+	httpReq, queryMsg, err := dnsoverhttps.NewRequestWithHook(ctx, query, c.url, lc.MakeQueryObserver(t0, &rqr))
 	if err != nil {
-		lc.logDone(t0, deadline, err)
+		lc.LogDone(t0, deadline, err)
 		return nil, err
 	}
 
 	// 4. Perform the HTTP round trip
 	httpResp, err := hc.RoundTrip(httpReq)
 	if err != nil {
-		lc.logDone(t0, deadline, err)
+		lc.LogDone(t0, deadline, err)
 		return nil, err
 	}
 
 	// 5. Read the response and validate it
-	resp, err := dnsoverhttps.ReadResponseWithHook(ctx, httpResp, queryMsg, lc.makeResponseObserver(t0, &rqr))
-	lc.logDone(t0, deadline, err)
+	resp, err := dnsoverhttps.ReadResponseWithHook(ctx, httpResp, queryMsg, lc.MakeResponseObserver(t0, &rqr))
+	lc.LogDone(t0, deadline, err)
 	return resp, err
 }
 
