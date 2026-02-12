@@ -19,7 +19,8 @@ type Config struct {
 
 	// ErrClassifier classifies errors for structured logging.
 	//
-	// Set by [NewConfig] to [DefaultErrClassifier].
+	// Set by [NewConfig] to [DefaultErrClassifier], which uses the
+	// [errclass] package to map errors to Unix-like names.
 	ErrClassifier ErrClassifier
 
 	// TimeNow returns the current time.

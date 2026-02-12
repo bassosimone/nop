@@ -3,6 +3,7 @@
 package nop
 
 import (
+	"context"
 	"net"
 	"testing"
 
@@ -19,8 +20,9 @@ func TestNewConfig(t *testing.T) {
 	_, ok := cfg.Dialer.(*net.Dialer)
 	assert.True(t, ok, "Dialer should be *net.Dialer")
 
-	// ErrClassifier should be DefaultErrClassifier
+	// ErrClassifier should use errclass by default
 	assert.Equal(t, "", cfg.ErrClassifier.Classify(nil))
+	assert.Equal(t, "ETIMEDOUT", cfg.ErrClassifier.Classify(context.DeadlineExceeded))
 
 	// TimeNow should be set and return a valid time
 	now := cfg.TimeNow()

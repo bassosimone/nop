@@ -2,6 +2,8 @@
 
 package nop
 
+import "github.com/bassosimone/nop/errclass"
+
 // ErrClassifier classifies errors into categorical strings for analysis.
 //
 // Implementations map errors to short, descriptive labels (e.g., "ETIMEDOUT",
@@ -14,7 +16,7 @@ type ErrClassifier interface {
 //
 // This allows using simple functions as classifiers:
 //
-//	op.ErrClassifier = ErrClassifierFunc(errclass.New)
+//	cfg.ErrClassifier = nop.ErrClassifierFunc(myClassifier)
 type ErrClassifierFunc func(error) string
 
 var _ ErrClassifier = ErrClassifierFunc(nil)
@@ -24,5 +26,8 @@ func (f ErrClassifierFunc) Classify(err error) string {
 	return f(err)
 }
 
-// DefaultErrClassifier is a no-op classifier that returns an empty string.
-var DefaultErrClassifier = ErrClassifierFunc(func(error) string { return "" })
+// DefaultErrClassifier uses [errclass.New] to classify errors into
+// Unix-like error names (e.g., "ETIMEDOUT", "ECONNRESET", "EDNS_NONAME").
+//
+// See the [errclass] package for the full list of supported error classes.
+var DefaultErrClassifier = ErrClassifierFunc(errclass.New)
