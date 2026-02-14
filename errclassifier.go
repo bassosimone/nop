@@ -2,7 +2,7 @@
 
 package nop
 
-import "github.com/bassosimone/nop/errclass"
+import "github.com/bassosimone/errclass"
 
 // ErrClassifier classifies errors into categorical strings for analysis.
 //

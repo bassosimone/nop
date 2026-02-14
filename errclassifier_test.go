@@ -7,7 +7,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/bassosimone/nop/errclass"
+	"github.com/bassosimone/errclass"
 	"github.com/stretchr/testify/assert"
 )
 

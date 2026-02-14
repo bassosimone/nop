@@ -6,6 +6,8 @@ github.com/bassosimone/dnsoverstream v0.0.0-20260212194245-457d6f1afcf1 h1:T0PQo
 github.com/bassosimone/dnsoverstream v0.0.0-20260212194245-457d6f1afcf1/go.mod h1:RP75Em32eZgXx0CXd7TkbKsUoEbNF6mIxPxXAuJzLcU=
 github.com/bassosimone/dnstest v0.0.0-20260210075929-b5564aaef1fc h1:fUHjOwd1rFZDplJL8wp6jxgeH++27o0ZACHnR/Fn44k=
 github.com/bassosimone/dnstest v0.0.0-20260210075929-b5564aaef1fc/go.mod h1:yltN9sit8yNGvHDZxLwNOrE5/YM/IOf+TqNRu/W7CKs=
+github.com/bassosimone/errclass v0.0.0-20260214232348-457ba323729f h1:HfRQwj5HO0DLL3LzoqGT4vYze2gjz8I1P8q9bpRVGiE=
+github.com/bassosimone/errclass v0.0.0-20260214232348-457ba323729f/go.mod h1:/qCg1mcNO9PNzVqxxji/ktqFG3GxaAAqbV69y3MZr0s=
 github.com/bassosimone/httptestx v0.0.0-20260108162357-eb420dfdf26f h1:+jhcNx9163MA/XXH6dEimUCk6d9FQHidOBqekm98vkI=
 github.com/bassosimone/httptestx v0.0.0-20260108162357-eb420dfdf26f/go.mod h1:KkYa3rtxDneIzTsAujMKzuKjC9VvAnaA86VT3u7WkTQ=
 github.com/bassosimone/iotest v0.0.0-20260108162419-cc1a50b01693 h1:R9z1MEIO9XU9MTAeEWBzhU93IOEKDk4UIRyTmhhQFKY=
