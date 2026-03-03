@@ -4,10 +4,10 @@ go 1.25.6
 
 require (
 	github.com/bassosimone/dnscodec v0.0.0-20260227090120-ec345569a921
-	github.com/bassosimone/dnsoverhttps v0.0.0-20260227090120-924b9af916f9
-	github.com/bassosimone/dnsoverstream v0.0.0-20260227090120-0288aff5a1ec
+	github.com/bassosimone/dnsoverhttps v0.0.0-20260302075701-b21bd90b2b05
+	github.com/bassosimone/dnsoverstream v0.0.0-20260302075701-11c1f5d6ead1
 	github.com/bassosimone/errclass v0.0.0-20260214232348-457ba323729f
-	github.com/bassosimone/minest v0.0.0-20260227090120-c6a13e535a96
+	github.com/bassosimone/minest v0.0.0-20260302075701-9ad9b2900649
 	github.com/bassosimone/netstub v0.0.0-20260215140819-e5f4b4b48997
 	github.com/bassosimone/runtimex v0.0.0-20260108162100-336f3823f6b7
 	github.com/bassosimone/safeconn v0.0.0-20260217061244-b6fb4361a877
@@ -21,7 +21,6 @@ require (
 )
 
 require (
-	github.com/bassosimone/dnstest v0.0.0-20260227090120-60886687b754 // indirect
 	github.com/bassosimone/iox v0.0.0-20260214210219-fcf71040f780 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
