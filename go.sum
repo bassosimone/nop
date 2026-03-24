@@ -1,9 +1,9 @@
 github.com/bassosimone/dnscodec v0.0.0-20260315095815-6c62273d0db8 h1:MtfG+gQfXSAYsmTEQd0YPKgx7uKbTV9gAXaX03gNB8Q=
 github.com/bassosimone/dnscodec v0.0.0-20260315095815-6c62273d0db8/go.mod h1:mSibJ1WTUi5eF8Nn5khsSUHIIdXZ6aK3S+mkV5247rE=
-github.com/bassosimone/dnsoverhttps v0.0.0-20260315095816-2c1922b90b69 h1:9fwtQlXWcC+Q9CG92AFxOVwMX0JlIKgeJJA1205XmsY=
-github.com/bassosimone/dnsoverhttps v0.0.0-20260315095816-2c1922b90b69/go.mod h1:MbO6ipc70fkIo6MEHPHY/uGSn38BtBOedbiZ5lVM8gM=
-github.com/bassosimone/dnsoverstream v0.0.0-20260315095816-38cb44c14004 h1:eqmwIlmmV+2VnIzaWYCwf9ZQA5VZ0XGHZt4v0gapbRM=
-github.com/bassosimone/dnsoverstream v0.0.0-20260315095816-38cb44c14004/go.mod h1:eCNN7Kf6q/KIRk9tLae19Iiag/KpTD2ZfphRU9X5Tf0=
+github.com/bassosimone/dnsoverhttps v0.0.0-20260316100245-10d7d5c92d0f h1:pE1pCv+lon9GUuyEXP2cKowp//jm5mFazieOtdSPHzw=
+github.com/bassosimone/dnsoverhttps v0.0.0-20260316100245-10d7d5c92d0f/go.mod h1:KwOp5M0GaXqM8/8kF2MPm+JyPXccyhgBsuFqK1sNUzw=
+github.com/bassosimone/dnsoverstream v0.0.0-20260316100245-bb885efcc676 h1:I+Q3f7yHniS2tEx4Lq5Ps0ZupxZmkFI2RRKDRJM6fDU=
+github.com/bassosimone/dnsoverstream v0.0.0-20260316100245-bb885efcc676/go.mod h1:GJGKcuov3FWeXXtF7sijdTQZ8Tr0WaNRELBXPgc54PA=
 github.com/bassosimone/dnstest v0.0.0-20260315095815-43f9058b5317 h1:lYQftde1QWlGvP/0PPvWizUCE//aYXgC0GBZnumO4wY=
 github.com/bassosimone/dnstest v0.0.0-20260315095815-43f9058b5317/go.mod h1:N10K/EAw7u1O40d8jsezXQoxEZrCef3YnUwO813hCpc=
 github.com/bassosimone/errclass v0.0.0-20260310100807-e296ecbefd7f h1:3gsqRFIPRkTVid5skWhlk7u2hbXW6KkQpT2jaow6Zhg=
@@ -14,8 +14,8 @@ github.com/bassosimone/iotest v0.0.0-20260108162419-cc1a50b01693 h1:R9z1MEIO9XU9
 github.com/bassosimone/iotest v0.0.0-20260108162419-cc1a50b01693/go.mod h1:tcrllxHmwim0qCBvmbyQs0CGo4s4HwMaZwblEzp6eDk=
 github.com/bassosimone/iox v0.0.0-20260214210219-fcf71040f780 h1:7YxchjmrFDdm7dJfCx90t1GSPU4b4vPqHHyQPS97ELs=
 github.com/bassosimone/iox v0.0.0-20260214210219-fcf71040f780/go.mod h1:3dhCKfl705UjK5ZLwS69bsp2l7TpYPwW73B5n3GDSYI=
-github.com/bassosimone/minest v0.0.0-20260315095816-f43a2863ecf0 h1:cMCEDrgnqMxrULN8ZbGh+Js/qLRAJ1vWokJs8n4/nu4=
-github.com/bassosimone/minest v0.0.0-20260315095816-f43a2863ecf0/go.mod h1:b4hZcra8gC7JytC9u6VGiSc+RKDbiSrmxu3zw9UxBg8=
+github.com/bassosimone/minest v0.0.0-20260316100245-448cfd743303 h1:h4BIq8qaEvowgGURXKcWKNuOrPXY5wMs9O5v6zVMVD4=
+github.com/bassosimone/minest v0.0.0-20260316100245-448cfd743303/go.mod h1:UofySUvx06S1mUQwPxrq8ycDmEEC55JWiBNteaF7ONs=
 github.com/bassosimone/netstub v0.0.0-20260215140819-e5f4b4b48997 h1:R50/QauP1wURY03phd3WLiD9Yarr+j4IMXPsGEbwP94=
 github.com/bassosimone/netstub v0.0.0-20260215140819-e5f4b4b48997/go.mod h1:P0CzRmMyj0/av01KYL70Cb+/RMRpmtVQf8vI7oIvcJY=
 github.com/bassosimone/pkitest v0.0.0-20260108162522-4e97d4738e31 h1:bWrYpMtPO3efLcYHqX9Z3mHmV0MGAE8uaJ1fJaEV2RE=
