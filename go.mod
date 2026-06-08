@@ -4,10 +4,10 @@ go 1.25.6
 
 require (
 	github.com/bassosimone/dnscodec v0.0.0-20260525092955-57f91a767d2f
-	github.com/bassosimone/dnsoverhttps v0.0.0-20260525100812-1cba39dbc0d6
-	github.com/bassosimone/dnsoverstream v0.0.0-20260525101014-248a91b57d5a
+	github.com/bassosimone/dnsoverhttps v0.0.0-20260608050846-02d21fdabf50
+	github.com/bassosimone/dnsoverstream v0.0.0-20260608051021-22f6b313b621
 	github.com/bassosimone/errclass v0.0.0-20260525085411-7c1b91e7341b
-	github.com/bassosimone/minest v0.0.0-20260525101224-8c9b5b7856fd
+	github.com/bassosimone/minest v0.0.0-20260608051146-815c2e72a9c9
 	github.com/bassosimone/netstub v0.0.0-20260506051424-2560572cc9cf
 	github.com/bassosimone/runtimex v0.0.0-20260430082757-ec3a7b516e79
 	github.com/bassosimone/safeconn v0.0.0-20260506052055-951e9acc14d4
@@ -24,7 +24,7 @@ require (
 	github.com/bassosimone/iox v0.0.0-20260506051907-b5f387f87f77 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/quic-go/quic-go v0.59.1 // indirect
+	github.com/quic-go/quic-go v0.60.0 // indirect
 	golang.org/x/crypto v0.52.0 // indirect
 	golang.org/x/mod v0.36.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
