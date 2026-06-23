@@ -6,14 +6,14 @@ require (
 	github.com/bassosimone/dnscodec v0.0.0-20260615114925-94a4c2fbf3b4
 	github.com/bassosimone/dnsoverhttps v0.0.0-20260617121343-ce310417d710
 	github.com/bassosimone/dnsoverstream v0.0.0-20260617121659-cac6d5976a4a
-	github.com/bassosimone/errclass v0.0.0-20260615110755-4e76b69f038e
+	github.com/bassosimone/errclass v0.0.0-20260622075814-f5cf99a63fcb
 	github.com/bassosimone/minest v0.0.0-20260617161818-8b6c728d5e95
 	github.com/bassosimone/netstub v0.0.0-20260615120935-aee6f411f7c8
 	github.com/bassosimone/runtimex v0.0.0-20260615112505-ee72c4f0769e
-	github.com/bassosimone/safeconn v0.0.0-20260617065617-b3b3706579b5
+	github.com/bassosimone/safeconn v0.0.0-20260623163941-cb87a84f7523
 	github.com/bassosimone/slogstub v0.0.0-20260615170657-300f9af8067a
 	github.com/bassosimone/sud v0.0.0-20260615113322-cf96916c520d
-	github.com/bassosimone/tlsstub v0.0.0-20260617084450-5c0f29f22134
+	github.com/bassosimone/tlsstub v0.0.0-20260623164556-2d0e90df5147
 	github.com/google/uuid v1.6.0
 	github.com/miekg/dns v1.1.72
 	github.com/stretchr/testify v1.11.1
