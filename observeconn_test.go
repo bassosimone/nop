@@ -206,7 +206,7 @@ func TestObservedConnSetReadDeadline(t *testing.T) {
 	var gotDeadline time.Time
 
 	mockConn := newMinimalConn()
-	mockConn.SetReadDeadFunc = func(t time.Time) error {
+	mockConn.SetReadDeadlineFunc = func(t time.Time) error {
 		gotDeadline = t
 		return nil
 	}
@@ -227,7 +227,7 @@ func TestObservedConnSetWriteDeadline(t *testing.T) {
 	var gotDeadline time.Time
 
 	mockConn := newMinimalConn()
-	mockConn.SetWriteDeaFunc = func(t time.Time) error {
+	mockConn.SetWriteDeadlineFunc = func(t time.Time) error {
 		gotDeadline = t
 		return nil
 	}
@@ -320,7 +320,7 @@ func TestObservedConnSetReadDeadlineError(t *testing.T) {
 	wantErr := errors.New("set read deadline error")
 
 	mockConn := newMinimalConn()
-	mockConn.SetReadDeadFunc = func(time.Time) error {
+	mockConn.SetReadDeadlineFunc = func(time.Time) error {
 		return wantErr
 	}
 
@@ -338,7 +338,7 @@ func TestObservedConnSetWriteDeadlineError(t *testing.T) {
 	wantErr := errors.New("set write deadline error")
 
 	mockConn := newMinimalConn()
-	mockConn.SetWriteDeaFunc = func(time.Time) error {
+	mockConn.SetWriteDeadlineFunc = func(time.Time) error {
 		return wantErr
 	}
 
@@ -391,7 +391,7 @@ func TestObservedConnSetReadDeadlineLogging(t *testing.T) {
 	logger, records := newCapturingLogger()
 
 	mockConn := newMinimalConn()
-	mockConn.SetReadDeadFunc = func(time.Time) error { return nil }
+	mockConn.SetReadDeadlineFunc = func(time.Time) error { return nil }
 
 	fn := NewObserveConnFunc(cfg, logger)
 	observed, _ := fn.Call(context.Background(), mockConn)
@@ -408,7 +408,7 @@ func TestObservedConnSetWriteDeadlineLogging(t *testing.T) {
 	logger, records := newCapturingLogger()
 
 	mockConn := newMinimalConn()
-	mockConn.SetWriteDeaFunc = func(time.Time) error { return nil }
+	mockConn.SetWriteDeadlineFunc = func(time.Time) error { return nil }
 
 	fn := NewObserveConnFunc(cfg, logger)
 	observed, _ := fn.Call(context.Background(), mockConn)
