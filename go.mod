@@ -1,3 +1,4 @@
+// Deprecated: use github.com/bassosimone/ptnop instead.
 module github.com/bassosimone/nop
 
 go 1.26.0
