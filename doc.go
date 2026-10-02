@@ -116,4 +116,7 @@
 //
 // These concerns introduce multiple success/failure modes, which would compromise
 // the compositional simplicity of the primitives.
+//
+// Deprecated: use [github.com/bassosimone/ptnop] instead. Its event streams are better
+// suited for automatic tabular serialization generating self-explanatory rows.
 package nop

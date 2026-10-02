@@ -2,6 +2,21 @@
 
 [![GoDoc](https://pkg.go.dev/badge/github.com/bassosimone/nop)](https://pkg.go.dev/github.com/bassosimone/nop) [![Build Status](https://github.com/bassosimone/nop/actions/workflows/go.yml/badge.svg)](https://github.com/bassosimone/nop/actions) [![codecov](https://codecov.io/gh/bassosimone/nop/branch/main/graph/badge.svg)](https://codecov.io/gh/bassosimone/nop)
 
+---
+
+**This package is deprecated**: use [ptnop](https://github.com/bassosimone/ptnop)
+instead. It evolved from this codebase and emits events for every
+planned stage, including the ones skipped after a failure, so that each
+pipeline converts into a self-explanatory row (e.g. in Parquet).
+
+This package is in maintenance mode: we keep dependencies and CI
+up to date, but we do not fix bugs. Known issues: `httpBodyStreamDone`
+reports an empty `errClass` when reading the body fails, and failed
+TLS handshakes and HTTP round trips may log an empty `remoteAddr`
+after a connection reset.
+
+---
+
 The `nop` Go package provides composable primitives for building network
 measurement pipelines with structured logging. Each primitive is a
 `Func[A, B]` that can be chained via type-safe composition (`Compose2`
